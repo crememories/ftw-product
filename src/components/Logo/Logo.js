@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import config from '../../config';
 import LogoImageMobile from './sneakertime-logo-mobile.png';
-import LogoImage from './sneakertime-logo.png';
+import LogoImage from './crememories-logo.png';
 
 const Logo = props => {
   const { className, format, ...rest } = props;
