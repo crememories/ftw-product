@@ -119,7 +119,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=adidas',
+                      search: '?pub_brand=jewelry',
                     }}
                     className={css.link}
                   >

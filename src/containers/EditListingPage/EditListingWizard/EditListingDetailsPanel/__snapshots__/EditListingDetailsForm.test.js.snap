@@ -195,10 +195,10 @@ exports[`EditListingDetailsForm matches snapshot 1`] = `
         EditListingDetailsForm.brandPlaceholder
       </option>
       <option
-        key="adidas"
-        value="adidas"
+        key="jewelry"
+        value="jewelry"
       >
-        Adidas
+        Jewelry
       </option>
       <option
         key="air_jordan"

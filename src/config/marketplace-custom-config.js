@@ -103,7 +103,7 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'adidas', label: 'Adidas' },
+        { key: 'jewelry', label: 'jewelry' },
         { key: 'air_jordan', label: 'Air Jordan' },
         { key: 'converse', label: 'Converse' },
         { key: 'new_balance', label: 'New Balance' },

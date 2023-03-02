@@ -140,8 +140,8 @@ exports[`SearchPageWithList matches snapshot 1`] = `
               "config": Object {
                 "options": Array [
                   Object {
-                    "key": "adidas",
-                    "label": "Adidas",
+                    "key": "jewelry",
+                    "label": "Jewelry",
                   },
                   Object {
                     "key": "air_jordan",
@@ -377,8 +377,8 @@ exports[`SearchPageWithList matches snapshot 1`] = `
                 "config": Object {
                   "options": Array [
                     Object {
-                      "key": "adidas",
-                      "label": "Adidas",
+                      "key": "jewelry",
+                      "label": "Jewelry",
                     },
                     Object {
                       "key": "air_jordan",
