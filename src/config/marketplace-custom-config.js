@@ -103,7 +103,7 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'jewelry', label: 'jewelry' },
+        { key: 'jewelry', label: 'Jewelry' },
         { key: 'plane', label: 'Plane' },
         { key: 'boat', label: 'Boat' },
         { key: 'urn', label: 'Urn' },
