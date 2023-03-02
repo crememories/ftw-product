@@ -130,7 +130,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=air_jordan',
+                      search: '?pub_brand=plane',
                     }}
                     className={css.link}
                   >
@@ -141,7 +141,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=converse',
+                      search: '?pub_brand=boat',
                     }}
                     className={css.link}
                   >
@@ -152,7 +152,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=new_balance',
+                      search: '?pub_brand=urn',
                     }}
                     className={css.link}
                   >
@@ -163,70 +163,11 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=nike',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.link5" />
-                  </NamedLink>
-                </li>
-              </ul>
-            </div>
-            <div className={css.searchesExtra}>
-              <ul className={css.list}>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search: '?pub_brand=puma',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.link6" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search: '?pub_brand=ultraboost',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.link7" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search: '?pub_brand=vans',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.link8" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search: '?pub_brand=yeezy',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.link9" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
                       search: '?pub_brand=other',
                     }}
                     className={css.link}
                   >
-                    <FormattedMessage id="Footer.link10" />
+                    <FormattedMessage id="Footer.link5" />
                   </NamedLink>
                 </li>
               </ul>

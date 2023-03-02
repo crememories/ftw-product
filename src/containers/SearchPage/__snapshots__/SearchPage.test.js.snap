@@ -381,36 +381,16 @@ exports[`SearchPageWithList matches snapshot 1`] = `
                       "label": "Jewelry",
                     },
                     Object {
-                      "key": "air_jordan",
-                      "label": "Air Jordan",
+                      "key": "plane",
+                      "label": "Plane",
                     },
                     Object {
-                      "key": "converse",
-                      "label": "Converse",
+                      "key": "boat",
+                      "label": "Boat",
                     },
                     Object {
-                      "key": "new_balance",
-                      "label": "New Balance",
-                    },
-                    Object {
-                      "key": "nike",
-                      "label": "Nike",
-                    },
-                    Object {
-                      "key": "puma",
-                      "label": "Puma",
-                    },
-                    Object {
-                      "key": "ultraboost",
-                      "label": "Ultraboost",
-                    },
-                    Object {
-                      "key": "vans",
-                      "label": "Vans",
-                    },
-                    Object {
-                      "key": "yeezy",
-                      "label": "Yeezy",
+                      "key": "urn",
+                      "label": "Urn",
                     },
                     Object {
                       "key": "other",

@@ -201,52 +201,22 @@ exports[`EditListingDetailsForm matches snapshot 1`] = `
         Jewelry
       </option>
       <option
-        key="air_jordan"
-        value="air_jordan"
+        key="plane"
+        value="plane"
       >
-        Air Jordan
+        Plane
       </option>
       <option
-        key="converse"
-        value="converse"
+        key="boat"
+        value="boat"
       >
-        Converse
+        Boat
       </option>
       <option
-        key="new_balance"
-        value="new_balance"
+        key="urn"
+        value="urn"
       >
-        New Balance
-      </option>
-      <option
-        key="nike"
-        value="nike"
-      >
-        Nike
-      </option>
-      <option
-        key="puma"
-        value="puma"
-      >
-        Puma
-      </option>
-      <option
-        key="ultraboost"
-        value="ultraboost"
-      >
-        Ultraboost
-      </option>
-      <option
-        key="vans"
-        value="vans"
-      >
-        Vans
-      </option>
-      <option
-        key="yeezy"
-        value="yeezy"
-      >
-        Yeezy
+        Urn
       </option>
       <option
         key="other"

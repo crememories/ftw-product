@@ -104,14 +104,10 @@ export const filters = [
       // to make filter customizations a bit easier.
       options: [
         { key: 'jewelry', label: 'jewelry' },
-        { key: 'air_jordan', label: 'Air Jordan' },
-        { key: 'converse', label: 'Converse' },
-        { key: 'new_balance', label: 'New Balance' },
+        { key: 'plane', label: 'Plane' },
+        { key: 'boat', label: 'Boat' },
+        { key: 'urn', label: 'Urn' },
         { key: 'nike', label: 'Nike' },
-        { key: 'puma', label: 'Puma' },
-        { key: 'ultraboost', label: 'Ultraboost' },
-        { key: 'vans', label: 'Vans' },
-        { key: 'yeezy', label: 'Yeezy' },
         { key: 'other', label: 'Other' },
       ],
     },
