@@ -141,10 +141,10 @@ const siteTitle = 'CreMemories';
 const siteTwitterHandle = '@sharetribe';
 
 // Instagram page is used in SEO schema (http://schema.org/Organization)
-const siteInstagramPage = 'https://www.instagram.com/sharetribe/';
+const siteInstagramPage = 'https://www.instagram.com/crememories/';
 
 // Facebook page is used in SEO schema (http://schema.org/Organization)
-const siteFacebookPage = 'https://www.facebook.com/Sharetribe/';
+const siteFacebookPage = 'https://www.facebook.com/OfficialCreMemories/';
 
 // Social logins & SSO
 

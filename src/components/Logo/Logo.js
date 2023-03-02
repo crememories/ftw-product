@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import config from '../../config';
-import LogoImageMobile from './sneakertime-logo-mobile.png';
+import LogoImageMobile from './crememories-logo-mobilepng.png';
 import LogoImage from './crememories-logo.png';
 
 const Logo = props => {
