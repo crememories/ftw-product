@@ -12,8 +12,8 @@ import { canonicalRoutePath } from '../../util/routes';
 
 import { CookieConsent } from '../../components';
 
-import facebookImage from '../../assets/sneakertimeFacebook-1200x630.jpg';
-import twitterImage from '../../assets/sneakertimeTwitter-600x314.jpg';
+import facebookImage from '../../assets/CreMemories-Facebook-1200x630.jpg';
+import twitterImage from '../../assets/CreMemoriesTwitter-600x314.png';
 import css from './Page.module.css';
 
 const preventDefault = e => {

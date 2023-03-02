@@ -520,7 +520,7 @@ textarea {
 .defaultBackgroundImage {
   /* Gradient direction and overlaying the black color on top of the image for better readability */
   background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-    url('../assets/background-1440.jpg');
+    url('../assets/CreMemories-background-1440');
 
   /* Add loading color for the div */
   background-color: var(--matterColor);
@@ -541,7 +541,7 @@ textarea {
   /* Gradient direction and overlaying the black color on top of the image for better readability */
   @media (--viewportMedium) {
     background: linear-gradient(-45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-      url('../assets/background-1440.jpg');
+      url('../assets/CreMemories-background-1440');
 
     /* Add loading color for the div */
     background-color: var(--matterColor);
