@@ -107,7 +107,6 @@ export const filters = [
         { key: 'plane', label: 'Plane' },
         { key: 'boat', label: 'Boat' },
         { key: 'urn', label: 'Urn' },
-        { key: 'nike', label: 'Nike' },
         { key: 'other', label: 'Other' },
       ],
     },
