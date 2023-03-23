@@ -49,64 +49,10 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'men', label: 'Men' },
-        { key: 'women', label: 'Women' },
-        { key: 'kids', label: 'Kids' },
-      ],
-    },
-  },
-  {
-    id: 'size',
-    label: 'Size (US)',
-    type: 'SelectMultipleFilter',
-    group: 'primary',
-    queryParamNames: ['pub_size'],
-    config: {
-      // Schema type options: 'enum', 'multi-enum'
-      // Both types can work so that user selects multiple values when filtering search results.
-      // With "enum" the functionality will be OR-semantics (Nike OR Adidas OR Salomon)
-      // With "multi-enum" it's possible to use both AND and OR semantics with searchMode config.
-      schemaType: 'enum',
-
-      // "key" is the option you see in Flex Console.
-      // "label" is set here for the UI only.
-      // Note: label is not added through the translation files
-      // to make filter customizations a bit easier.
-      options: [
-        { key: '4', label: '4' },
-        { key: '5', label: '5' },
-        { key: '6', label: '6' },
-        { key: '7', label: '7' },
-        { key: '8', label: '8' },
-        { key: '9', label: '9' },
-        { key: '10', label: '10' },
-        { key: '11', label: '11' },
-        { key: '12', label: '12' },
-      ],
-    },
-  },
-  {
-    id: 'brand',
-    label: 'Brand',
-    type: 'SelectMultipleFilter',
-    group: 'primary',
-    queryParamNames: ['pub_brand'],
-    config: {
-      // Schema type options: 'enum', 'multi-enum'
-      // Both types can work so that user selects multiple values when filtering search results.
-      // With "enum" the functionality will be OR-semantics (Nike OR Adidas OR Salomon)
-      // With "multi-enum" it's possible to use both AND and OR semantics with searchMode config.
-      schemaType: 'enum',
-
-      // "key" is the option you see in Flex Console.
-      // "label" is set here for the UI only.
-      // Note: label is not added through the translation files
-      // to make filter customizations a bit easier.
-      options: [
         { key: 'jewelry', label: 'Jewelry' },
-        { key: 'plane', label: 'Plane' },
-        { key: 'boat', label: 'Boat' },
-        { key: 'urn', label: 'Urn' },
+        { key: 'plane', label: 'Planes' },
+        { key: 'boat', label: 'Boats' },
+        { key: 'urn', label: 'Urns' },
         { key: 'other', label: 'Other' },
       ],
     },
