@@ -119,7 +119,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=jewelry',
+                      search: '?pub_category=jewelry',
                     }}
                     className={css.link}
                   >
@@ -130,7 +130,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=plane',
+                      search: '?pub_category=plane',
                     }}
                     className={css.link}
                   >
@@ -141,7 +141,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=boat',
+                      search: '?pub_category=boat',
                     }}
                     className={css.link}
                   >
@@ -152,7 +152,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=urn',
+                      search: '?pub_category=urn',
                     }}
                     className={css.link}
                   >
@@ -163,7 +163,7 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
-                      search: '?pub_brand=other',
+                      search: '?pub_category=other',
                     }}
                     className={css.link}
                   >
