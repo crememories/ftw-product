@@ -105,38 +105,6 @@ const EditListingDetailsFormComponent = props => (
         })
       );
 
-      const sizeConfig = findConfigForSelectFilter('size', filterConfig);
-      const sizeSchemaType = sizeConfig ? sizeConfig.schemaType : null;
-      const sizes = sizeConfig && sizeConfig.options ? sizeConfig.options : [];
-      const sizeLabel = intl.formatMessage({
-        id: 'EditListingDetailsForm.sizeLabel',
-      });
-      const sizePlaceholder = intl.formatMessage({
-        id: 'EditListingDetailsForm.sizePlaceholder',
-      });
-
-      const sizeRequired = required(
-        intl.formatMessage({
-          id: 'EditListingDetailsForm.sizeRequired',
-        })
-      );
-
-      const brandConfig = findConfigForSelectFilter('brand', filterConfig);
-      const brandSchemaType = brandConfig ? brandConfig.schemaType : null;
-      const brands = brandConfig && brandConfig.options ? brandConfig.options : [];
-      const brandLabel = intl.formatMessage({
-        id: 'EditListingDetailsForm.brandLabel',
-      });
-      const brandPlaceholder = intl.formatMessage({
-        id: 'EditListingDetailsForm.brandPlaceholder',
-      });
-
-      const brandRequired = required(
-        intl.formatMessage({
-          id: 'EditListingDetailsForm.brandRequired',
-        })
-      );
-
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessageCreateListingDraft}
@@ -170,26 +138,6 @@ const EditListingDetailsFormComponent = props => (
             placeholder={categoryPlaceholder}
             validate={categoryRequired}
             schemaType={categorySchemaType}
-          />
-
-          <CustomFieldEnum
-            id="size"
-            name="size"
-            options={sizes}
-            label={sizeLabel}
-            placeholder={sizePlaceholder}
-            validate={sizeRequired}
-            schemaType={sizeSchemaType}
-          />
-
-          <CustomFieldEnum
-            id="brand"
-            name="brand"
-            options={brands}
-            label={brandLabel}
-            placeholder={brandPlaceholder}
-            validate={brandRequired}
-            schemaType={brandSchemaType}
           />
 
           <Button

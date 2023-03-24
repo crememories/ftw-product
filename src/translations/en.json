@@ -182,7 +182,7 @@
   "EditListingDetailsForm.titlePlaceholder": "Which sneakers are you selling?",
   "EditListingDetailsForm.titleRequired": "You need to add a name.",
   "EditListingDetailsForm.updateFailed": "Failed to update listing. Please try again.",
-  "EditListingDetailsPanel.createListingTitle": "Sell your Sneaker",
+  "EditListingDetailsPanel.createListingTitle": "Sell your memorial",
   "EditListingDetailsPanel.title": "Edit details of {listingTitle}",
   "EditListingFeaturesForm.showListingFailed": "Fetching listing data failed",
   "EditListingFeaturesForm.updateFailed": "Failed to update listing. Please try again.",
