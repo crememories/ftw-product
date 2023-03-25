@@ -202,7 +202,7 @@
   "EditListingPage.loadingListingData": "Cargando anuncio…",
   "EditListingPage.titleCreateListing": "Crear un anuncio",
   "EditListingPage.titleEditListing": "Editar anuncio",
-  "EditListingPhotosForm.addImagesTip": "Tip: Choose the top 2-3 photos of your sneakers from different angles in a good light.",
+  "EditListingPhotosForm.addImagesTip": "Tip: Choose the top 2-3 photos of your memorial from different angles in a good light.",
   "EditListingPhotosForm.chooseImage": "+ Añadir imagen…",
   "EditListingPhotosForm.imageRequired": "Necesitas añadir al menos una imagen.",
   "EditListingPhotosForm.imageTypes": ".JPG, .GIF o .PNG. Máx. 20 MB",
