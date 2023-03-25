@@ -202,7 +202,7 @@
   "EditListingPage.loadingListingData": "Eintragsdaten werden geladen…",
   "EditListingPage.titleCreateListing": "Eintrag erstellen",
   "EditListingPage.titleEditListing": "Eintrag bearbeiten",
-  "EditListingPhotosForm.addImagesTip": "Tip: Choose the top 2-3 photos of your sneakers from different angles in a good light.",
+  "EditListingPhotosForm.addImagesTip": "Tip: Choose the top 2-3 photos of your memorial from different angles in a good light.",
   "EditListingPhotosForm.chooseImage": "+ Wähle ein Bild…",
   "EditListingPhotosForm.imageRequired": "Du musst mindestens ein Bild hinzufügen.",
   "EditListingPhotosForm.imageTypes": ".JPG, .GIF oder .PNG. Max. 20 MB",
