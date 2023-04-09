@@ -802,6 +802,12 @@ textarea {
   color: var(--matterColorLight);
 }
 
+/* Trash button */
+.buttonTrash {
+  width: auto;
+  padding: 0;
+}
+
 /* ================ Modals ================ */
 
 .marketplaceModalRootStyles {

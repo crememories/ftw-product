@@ -1,0 +1,4 @@
+.root,
+.trash {
+  stroke: var(--failColor);
+}

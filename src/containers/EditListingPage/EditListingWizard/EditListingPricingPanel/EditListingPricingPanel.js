@@ -15,6 +15,7 @@ import { ListingLink } from '../../../../components';
 // Import modules from this directory
 import EditListingPricingForm from './EditListingPricingForm';
 import css from './EditListingPricingPanel.module.css';
+import { indexOf } from 'lodash';
 
 const { Money } = sdkTypes;
 
@@ -28,6 +29,7 @@ const EditListingPricingPanel = props => {
     onSubmit,
     onChange,
     submitButtonText,
+    actionAddBtnText,
     panelUpdated,
     updateInProgress,
     errors,
@@ -58,7 +60,28 @@ const EditListingPricingPanel = props => {
       className={css.form}
       initialValues={{ price, stock: currentStock }}
       onSubmit={values => {
+
+        const valuesKeys = Object.keys(values);
+        const variants = {};
+        
+        // console.log(values);
         const { price, stock } = values;
+        valuesKeys.forEach((element) => {
+          let value = values[element];
+          if(element.indexOf('variant') > -1 && element != 'varianPrice_0'){
+            let index = element.split('_',2);
+            console.log(index);
+            if(!variants[index[1]]){
+              variants[index[1]] = {};
+            }
+
+            if(value.amount){
+              variants[index[1]][index[0]] = value.amount;
+            }else{
+              variants[index[1]][index[0]] = value;
+            }
+          }
+        });
 
         // Update stock only if the value has changed.
         // NOTE: this is going to be used on a separate call to API
@@ -78,11 +101,13 @@ const EditListingPricingPanel = props => {
         const updateValues = {
           price,
           ...stockUpdateMaybe,
+          publicData: { variants },
         };
         onSubmit(updateValues);
       }}
       onChange={onChange}
       saveActionMsg={submitButtonText}
+      variantLabel={actionAddBtnText}
       disabled={disabled}
       ready={ready}
       updated={panelUpdated}

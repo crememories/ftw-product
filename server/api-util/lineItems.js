@@ -77,6 +77,18 @@ exports.transactionLineItems = (listing, orderData) => {
     ? calculateQuantityFromDates(bookingStart, bookingEnd, lineItemUnitType)
     : 1;
 
+
+  // custom variants prices
+  console.log('listing');
+  console.log(listing);
+
+  if( orderData.variantId ){
+    const variantId = orderData.variantId-1;
+    const variantData = listing.attributes.publicData.variants[variantId];
+    const variantPrice = variantData.variantPrice;
+    unitPrice.amount = variantPrice;
+  }
+
   /**
    * If you want to use pre-defined component and translations for printing the lineItems base price for order,
    * you should use one of the codes:
@@ -132,6 +144,9 @@ exports.transactionLineItems = (listing, orderData) => {
     percentage: PROVIDER_COMMISSION_PERCENTAGE,
     includeFor: ['provider'],
   };
+
+  console.log('order');
+  console.log(order);
 
   const lineItems = [order, ...deliveryLineItem, providerCommission];
 
