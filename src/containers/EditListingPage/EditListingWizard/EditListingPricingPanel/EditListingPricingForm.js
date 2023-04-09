@@ -1,7 +1,9 @@
 import React from 'react';
 import { bool, func, shape, string } from 'prop-types';
 import { compose } from 'redux';
-import { Form as FinalForm } from 'react-final-form';
+import { Form as FinalForm} from 'react-final-form';
+import arrayMutators from "final-form-arrays";
+
 import classNames from 'classnames';
 
 // Import configs and util modules
@@ -18,11 +20,15 @@ import { Button, Form, FieldCurrencyInput, FieldTextInput } from '../../../../co
 
 // Import modules from this directory
 import css from './EditListingPricingForm.module.css';
+import EditListingPricingVariant from './EditListingPricingVariant';
 
 const { Money } = sdkTypes;
 
 export const EditListingPricingFormComponent = props => (
   <FinalForm
+    mutators={{
+      ...arrayMutators
+    }}
     {...props}
     render={formRenderProps => {
       const {
@@ -38,6 +44,7 @@ export const EditListingPricingFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
+        variantLabel,
       } = formRenderProps;
 
       const priceRequired = validators.required(
@@ -68,6 +75,7 @@ export const EditListingPricingFormComponent = props => (
 
       const classes = classNames(css.root, className);
       const submitReady = (updated && pristine) || ready;
+      const variantAdd = variantLabel;
       const submitInProgress = updateInProgress;
       const submitDisabled = invalid || disabled || submitInProgress;
       const { updateListingError, showListingsError, setStockError } = fetchErrors || {};
@@ -75,6 +83,12 @@ export const EditListingPricingFormComponent = props => (
       const stockErrorMessage = isOldTotalMismatchStockError(setStockError)
         ? intl.formatMessage({ id: 'EditListingPricingForm.oldStockTotalWasOutOfSync' })
         : intl.formatMessage({ id: 'EditListingPricingForm.stockUpdateFailed' });
+
+        const handleAddField = (e) => {
+          console.log(e);
+          console.log(formRenderProps.form.mutators);
+          formRenderProps.form.mutators.push("pricingVariant",Math.random());
+        };
 
       return (
         <Form onSubmit={handleSubmit} className={classes}>
@@ -110,6 +124,22 @@ export const EditListingPricingFormComponent = props => (
             validate={stockValidator}
           />
           {setStockError ? <p className={css.error}>{stockErrorMessage}</p> : null}
+
+          <EditListingPricingVariant
+            afdsda="button"
+            intl={intl}
+            priceValidators={priceValidators}
+          > 
+          </EditListingPricingVariant>
+
+
+          <Button
+            className={css.submitButton}
+            type="button"
+            onClick={handleAddField}
+          >
+            {variantAdd}
+          </Button>
 
           <Button
             className={css.submitButton}

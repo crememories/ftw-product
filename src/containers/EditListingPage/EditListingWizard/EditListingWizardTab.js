@@ -114,6 +114,8 @@ const EditListingWizardTab = props => {
       ? updateValues
       : { ...updateValues, id: currentListing.id };
 
+      console.log(updateListingValues);
+
     onUpdateListingOrCreateListingDraft(tab, updateListingValues)
       .then(r => {
         if (isNewListingFlow) {
@@ -173,10 +175,12 @@ const EditListingWizardTab = props => {
       const submitButtonTranslationKey = isNewListingFlow
         ? 'EditListingWizard.saveNewPricing'
         : 'EditListingWizard.saveEditPricing';
+        const buttonAddVarinatPricing = 'EditListingWizard.addNewVariant';
       return (
         <EditListingPricingPanel
           {...panelProps(PRICING)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          actionAddBtnText={intl.formatMessage({ id: buttonAddVarinatPricing })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
