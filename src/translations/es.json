@@ -229,8 +229,6 @@
   "EditListingPricingForm.labelProductPlaceholderVariant": "Description for variant",
   "EditListingPricingForm.stockVarinatIsRequired": "Count of items is required",
   "EditListingPricingForm.priceVariantIsRequired": "You need to add a valid price.",
-  "EditListingPricingForm.stockLabelVariant": "Count of items for variant",
-  "EditListingPricingForm.stockPlaceholderVariant": "Count of items for variant",
   "EditListingPricingForm.priceRequired": "Necesitas poner un precio válido.",
   "EditListingPricingForm.priceTooLow": "El precio mínimo es de {minPrice}.",
   "EditListingPricingForm.showListingFailed": "Error al recopilar los datos del anuncio",

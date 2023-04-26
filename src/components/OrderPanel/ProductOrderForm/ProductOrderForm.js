@@ -49,12 +49,20 @@ const renderForm = formRenderProps => {
   } = formRenderProps;
 
   const handleOnChange = formValues => {
+    console.log(formValues);
+    
     const { quantity: quantityRaw, deliveryMethod, variant: variantId } = formValues.values;
 
     const quantityInt = Number.parseInt(quantityRaw, 10);
     const isBrowser = typeof window !== 'undefined';
     const variantInt = variants?(Number.parseInt(variants[variantId-1]?variants[variantId-1]['variantStok']:null, 10)):0;
     const quantity = quantityInt ? quantityInt : variantInt ? variantInt: 0;
+
+    // if(formValues.active == 'variant' && variantInt){
+    //   formRenderProps.form.getFieldState('quantity').change('');
+    // }else if(formValues.active == 'quantity' && quantityInt){
+    //   formRenderProps.form.getFieldState('variant')?formRenderProps.form.getFieldState('variant').change(''):null;
+    // }
 
     if (isBrowser && quantity && deliveryMethod && !fetchLineItemsInProgress) {
       onFetchTransactionLineItems({
@@ -66,22 +74,16 @@ const renderForm = formRenderProps => {
 
   };
 
-  const handleOnChangeForm = formData => {
-    if(formData.target.name == 'variant'){
-      formRenderProps.form.getFieldState('quantity').change('');
-    }else if(formData.target.name == 'quantity'){
-      formRenderProps.form.getFieldState('variant')?formRenderProps.form.getFieldState('variant').change(''):null;
-    }
-  }
-
   // In case quantity and deliveryMethod are missing focus on that select-input.
   // Otherwise continue with the default handleSubmit function.
   const handleFormSubmit = e => {
     const { quantity, deliveryMethod, variant } = values || {};
 
     console.log(!quantity || quantity < 1 || !variant);
+    console.log((!quantity || quantity < 1) + 'quantity check');
+    console.log(((!quantity || quantity < 1) && !variant) + 'variant check');
 
-    if ((!quantity || quantity < 1) || !variant) {
+    if ((!quantity || quantity < 1) && !variant) {
       e.preventDefault();
       // Blur event will show validator message
       formApi.blur('quantity');
@@ -123,24 +125,17 @@ const renderForm = formRenderProps => {
     return !variants ? null : (()=>{
       const result = [];
       forEach(variants,(e,i)=>{
-        e.variantStok < currentStock ? result[i] = e : null;
+        currentStock ? result[i] = e : null;
       })
       return result.length ? result : null;
     })();
   }
 
   const formatVariantLabel = (intl,variant,price) => {
-    const amount = variant.variantPrice * variant.variantStok;
+    const amount = variant.variantPrice;
     const variantPrice = new Money(amount,price.currency);
 
     return formatMoney(intl, variantPrice) +' '+ variant.variantLabel;
-  }
-
-  const clearValidation = msg => () =>{
-    const quantity = formRenderProps.form.getFieldState('quantity').value;
-    const variant = formRenderProps.form.getFieldState('variant')?formRenderProps.form.getFieldState('variant').value:null;
-
-    return numberAtLeast(msg, 1)(quantity ? quantity : variant);
   }
 
   const contactSellerLink = (
@@ -149,7 +144,6 @@ const renderForm = formRenderProps => {
     </InlineTextButton>
   );
   const quantityRequiredMsg = intl.formatMessage({ id: 'ProductOrderForm.quantityRequired' });
-  const quantityVariantRequiredMsg = intl.formatMessage({ id: 'ProductOrderForm.quantityvariantRequired' });
 
   const hasStock = currentStock && currentStock > 0;
   const quantities = hasStock ? [...Array(currentStock).keys()].map(i => i + 1) : [];
@@ -161,8 +155,8 @@ const renderForm = formRenderProps => {
   const submitDisabled = !hasStock;
 
   return (
-    <Form onSubmit={handleFormSubmit} onChange={handleOnChangeForm}>
-      <FormSpy subscription={{ values: true, active: true }} onChange={handleOnChange} />
+    <Form onSubmit={handleFormSubmit}>
+      <FormSpy subscription={{ values: true }} onChange={handleOnChange} />
 
       {!variantsMap ? null : (
         
@@ -172,9 +166,8 @@ const renderForm = formRenderProps => {
           name="variant"
           disabled={!hasStock}
           label={intl.formatMessage({ id: 'ProductOrderForm.quantityVariantLabel' })}
-          validate={clearValidation(quantityVariantRequiredMsg)}
         >
-          <option disabled value="">
+          <option value="">
             {intl.formatMessage({ id: 'ProductOrderForm.selectQuantityVariantOption' })}
           </option>
 
@@ -202,7 +195,7 @@ const renderForm = formRenderProps => {
           name="quantity"
           disabled={!hasStock}
           label={intl.formatMessage({ id: 'ProductOrderForm.quantityLabel' })}
-          validate={clearValidation(quantityRequiredMsg)}
+          validate={numberAtLeast(quantityRequiredMsg, 1)}
         >
           <option disabled value="">
             {intl.formatMessage({ id: 'ProductOrderForm.selectQuantityOption' })}
