@@ -15,6 +15,24 @@ module.exports = (req, res) => {
       const listing = listingResponse.data.data;
       lineItems = transactionLineItems(listing, { ...orderData, ...bodyParams.params });
 
+      const variantCheck = (bodyParams.params 
+        && bodyParams.params.stockReservationVariant 
+        && listing.attributes.publicData
+        && listing.attributes.publicData.variants);
+
+      if(variantCheck){
+        const variantId = bodyParams.params.stockReservationVariant - 1;
+        const variantSelected = listing.attributes.publicData.variants[variantId];
+        listing.attributes.price.amount = variantSelected.variantPrice;
+
+        console.log(listing);
+
+        console.log('variantId');
+        console.log(variantId);
+      }
+
+     
+
       return getTrustedSdk(req);
     })
     .then(trustedSdk => {

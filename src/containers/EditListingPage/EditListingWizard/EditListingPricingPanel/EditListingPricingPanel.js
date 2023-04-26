@@ -70,7 +70,7 @@ const EditListingPricingPanel = props => {
           let value = values[element];
           if(element.indexOf('variant') > -1 && element != 'varianPrice_0'){
             let index = element.split('_',2);
-            console.log(index);
+
             if(!variants[index[1]]){
               variants[index[1]] = {};
             }

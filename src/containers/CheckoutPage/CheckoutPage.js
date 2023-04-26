@@ -109,6 +109,8 @@ const checkIsPaymentExpired = existingTransaction => {
 };
 
 const getFormattedTotalPrice = (transaction, intl) => {
+  console.log('getFormattedTotalPrice');
+  console.log(transaction);
   const totalPrice = transaction.attributes.payinTotal;
   return formatMoney(intl, totalPrice);
 };
@@ -281,6 +283,9 @@ export class CheckoutPageComponent extends Component {
     const hasNavigatedThroughLink = history.action === 'PUSH' || history.action === 'REPLACE';
 
     const hasDataInProps = !!(orderData && listing && hasNavigatedThroughLink);
+    console.log('fetchSpeculatedTransaction');
+    console.log(fetchSpeculatedTransaction);
+
     if (hasDataInProps) {
       // Store data only if data is passed through props and user has navigated through a link.
       storeData(orderData, listing, transaction, STORAGE_KEY);
@@ -308,12 +313,15 @@ export class CheckoutPageComponent extends Component {
       // The way to pass it to checkout page is through pageData.orderData
       const quantity = pageData.orderData?.quantity;
       const quantityMaybe = quantity ? { quantity } : {};
+      const variant = pageData.orderData?.variant;
+      const variantMaybe = variant ? { variant } : {};
       const deliveryMethod = pageData.orderData?.deliveryMethod;
       fetchSpeculatedTransaction(
         {
           listingId,
           deliveryMethod,
           ...quantityMaybe,
+          ...variantMaybe,
           ...bookingDatesMaybe(pageData.orderData.bookingDates),
         },
         transactionId
@@ -674,6 +682,8 @@ export class CheckoutPageComponent extends Component {
     const isLoading = !this.state.dataLoaded || speculateTransactionInProgress;
 
     const { listing, transaction, orderData } = this.state.pageData;
+    console.log(this.state.pageData);
+    console.log(transaction);
     const existingTransaction = ensureTransaction(transaction);
     const speculatedTransaction = ensureTransaction(speculatedTransactionMaybe, {}, null);
     const currentListing = ensureListing(listing);
@@ -800,10 +810,19 @@ export class CheckoutPageComponent extends Component {
       : isDaily
       ? 'CheckoutPage.perDay'
       : 'CheckoutPage.perUnit';
-
+    
+    let variantData = {};
     const price = currentListing.attributes.price;
+    if(currentListing.attributes.publicData && currentListing.attributes.publicData.variants){
+      if(orderData.variant){
+        variantData = currentListing.attributes.publicData.variants[orderData.variant-1];
+        price.amount = variantData.variantPrice;
+      }
+    }
+
     const formattedPrice = formatMoney(intl, price);
     const detailsSubTitle = `${formattedPrice} ${intl.formatMessage({ id: unitTranslationKey })}`;
+    const detailsVariantSubTitle = variantData?variantData.variantLabel:null;
 
     const showInitialMessageInput = !(
       existingTransaction && existingTransaction.attributes.lastTransition === TRANSITION_ENQUIRE
@@ -926,6 +945,7 @@ export class CheckoutPageComponent extends Component {
             <div className={css.detailsHeadings}>
               <h2 className={css.detailsTitle}>{listingTitle}</h2>
               <p className={css.detailsSubtitle}>{detailsSubTitle}</p>
+              <p className={css.detailsSubtitle}>{detailsVariantSubTitle}</p>
             </div>
             {speculateTransactionErrorMessage}
             <h2 className={css.orderBreakdownTitle}>

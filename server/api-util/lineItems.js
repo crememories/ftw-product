@@ -80,9 +80,8 @@ exports.transactionLineItems = (listing, orderData) => {
 
   // custom variants prices
   console.log('listing');
-  console.log(listing);
 
-  if( orderData.variantId ){
+  if( orderData.variantId){
     const variantId = orderData.variantId-1;
     const variantData = listing.attributes.publicData.variants[variantId];
     const variantPrice = variantData.variantPrice;
@@ -144,9 +143,6 @@ exports.transactionLineItems = (listing, orderData) => {
     percentage: PROVIDER_COMMISSION_PERCENTAGE,
     includeFor: ['provider'],
   };
-
-  console.log('order');
-  console.log(order);
 
   const lineItems = [order, ...deliveryLineItem, providerCommission];
 

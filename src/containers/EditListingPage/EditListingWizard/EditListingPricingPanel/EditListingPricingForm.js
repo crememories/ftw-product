@@ -85,8 +85,6 @@ export const EditListingPricingFormComponent = props => (
         : intl.formatMessage({ id: 'EditListingPricingForm.stockUpdateFailed' });
 
         const handleAddField = (e) => {
-          console.log(e);
-          console.log(formRenderProps.form.mutators);
           formRenderProps.form.mutators.push("pricingVariant",Math.random());
         };
 

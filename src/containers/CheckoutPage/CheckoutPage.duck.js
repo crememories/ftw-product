@@ -320,8 +320,17 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
     : TRANSITION_REQUEST_PAYMENT;
   const isPrivilegedTransition = isPrivileged(transition);
 
-  const { deliveryMethod, quantity, bookingDates, ...otherOrderParams } = orderParams;
+  console.log('isPrivilegedTransition');
+  console.log(isPrivilegedTransition);
+  console.log('isTransition');
+  console.log(isTransition);
+
+  console.log('orderParams');
+  console.log(orderParams);
+  
+  const { deliveryMethod, quantity, variant, bookingDates, ...otherOrderParams } = orderParams;
   const quantityMaybe = quantity ? { stockReservationQuantity: quantity } : {};
+  const variantMaybe = quantity ? { stockReservationVariant: variant } : {};
   const bookingParamsMaybe = bookingDates || {};
 
   // Parameters only for client app's server
@@ -332,6 +341,7 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
   // Parameters for Flex API
   const transitionParams = {
     ...quantityMaybe,
+    ...variantMaybe,
     ...bookingParamsMaybe,
     ...otherOrderParams,
     cardToken: 'CheckoutPage_speculative_card_token',
@@ -355,6 +365,8 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
   };
 
   const handleSuccess = response => {
+    console.log('response');
+    console.log(response);
     const entities = denormalisedResponseEntities(response);
     if (entities.length !== 1) {
       throw new Error('Expected a resource in the speculate response');
@@ -386,6 +398,12 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
       .catch(handleError);
   } else if (isPrivilegedTransition) {
     // initiate privileged
+    console.log('orderData');
+    console.log(orderData);
+    console.log('bodyParams');
+    console.log(bodyParams);
+    console.log('queryParams');
+    console.log(queryParams);
     return initiatePrivileged({ isSpeculative: true, orderData, bodyParams, queryParams })
       .then(handleSuccess)
       .catch(handleError);
