@@ -150,6 +150,9 @@ export const InboxItem = props => {
   );
   const quantity = unitPurchase ? unitPurchase.quantity.toString() : null;
 
+  // console.log(tx);
+  console.log(props);
+
   const otherUser = isOrder ? provider : customer;
   const otherUserDisplayName = <UserDisplayName user={otherUser} intl={intl} />;
   const isOtherUserBanned = otherUser.attributes.banned;
@@ -217,6 +220,10 @@ export const InboxPageComponent = props => {
     scrollingDisabled,
     transactions,
   } = props;
+
+  console.log('InboxPageComponent');
+  console.log(props);
+
   const { tab } = params;
   const ensuredCurrentUser = ensureCurrentUser(currentUser);
 
@@ -372,6 +379,8 @@ InboxPageComponent.propTypes = {
 };
 
 const mapStateToProps = state => {
+  console.log('mapStateToProps')
+  console.log(state)
   const { fetchInProgress, fetchOrdersOrSalesError, pagination, transactionRefs } = state.InboxPage;
   const { currentUser, currentUserNotificationCount: providerNotificationCount } = state.user;
   return {

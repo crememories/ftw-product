@@ -24,14 +24,7 @@ module.exports = (req, res) => {
         const variantId = bodyParams.params.stockReservationVariant - 1;
         const variantSelected = listing.attributes.publicData.variants[variantId];
         listing.attributes.price.amount = variantSelected.variantPrice;
-
-        console.log(listing);
-
-        console.log('variantId');
-        console.log(variantId);
       }
-
-     
 
       return getTrustedSdk(req);
     })

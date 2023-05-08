@@ -350,6 +350,8 @@ export class CheckoutPageComponent extends Component {
       saveAfterOnetimePayment,
       shippingDetails,
     } = handlePaymentParams;
+
+    
     const storedTx = ensureTransaction(pageData.transaction);
 
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
@@ -494,6 +496,8 @@ export class CheckoutPageComponent extends Component {
     const deliveryMethod = pageData.orderData?.deliveryMethod;
     const quantity = pageData.orderData?.quantity;
     const quantityMaybe = quantity ? { quantity } : {};
+    const variant = pageData.orderData?.variant;
+    const variantMaybe = variant ? { variant } : {};
     const protectedDataMaybe =
       deliveryMethod && shippingDetails
         ? { protectedData: { deliveryMethod, shippingDetails } }
@@ -514,10 +518,14 @@ export class CheckoutPageComponent extends Component {
       listingId: pageData.listing.id,
       deliveryMethod,
       ...quantityMaybe,
+      ...variantMaybe,
       ...bookingDatesMaybe(pageData.orderData.bookingDates),
       ...protectedDataMaybe,
       ...optionalPaymentParams,
     };
+
+    console.log('handlePaymentIntentCreation orderParams');
+    console.log(orderParams);
 
     return handlePaymentIntentCreation(orderParams);
   }

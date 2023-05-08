@@ -15,7 +15,6 @@ import { ListingLink } from '../../../../components';
 // Import modules from this directory
 import EditListingPricingForm from './EditListingPricingForm';
 import css from './EditListingPricingPanel.module.css';
-import { indexOf } from 'lodash';
 
 const { Money } = sdkTypes;
 
@@ -43,6 +42,19 @@ const EditListingPricingPanel = props => {
   const currentStockRaw = currentListing.currentStock?.attributes?.quantity;
   const currentStock = typeof currentStockRaw != null ? currentStockRaw : 1;
   const { price } = currentListing.attributes;
+  const variants = currentListing.attributes.publicData.variants;
+  const initialUnlimitedStock = currentListing.attributes.publicData.stockUnlimited?[`unlimited`]:null;
+  const pricingVariant = [];
+
+  const variantKeys = Object.keys(variants);
+
+  variantKeys.forEach( key => {
+    const variantLabel = variants[key].variantLabel;
+    const variantPrice = new Money;
+    variantPrice.amount = variants[key].variantPrice;
+    variantPrice.currency = price.currency;
+    pricingVariant[pricingVariant.length] = {variantPrice,variantLabel}
+  });
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -55,34 +67,29 @@ const EditListingPricingPanel = props => {
   );
 
   const priceCurrencyValid = price instanceof Money ? price.currency === config.currency : true;
+
   const form = priceCurrencyValid ? (
     <EditListingPricingForm
       className={css.form}
-      initialValues={{ price, stock: currentStock }}
+      // initialValues={{ price, stock: currentStock, variants }}
+      // initialValues={{ price, stock: currentStock, variants }}
+      initialValues={{ price, stock: currentStock, unlimitedStock:initialUnlimitedStock, pricingVariant }}
       onSubmit={values => {
 
-        const valuesKeys = Object.keys(values);
-        const variants = {};
+        const { price, stock, unlimitedStock } = values;
+        const variantsValues = values.pricingVariant;
+        const variantsUpdate = {};
         
-        // console.log(values);
-        const { price, stock } = values;
+        const valuesKeys = Object.keys(variantsValues);
         valuesKeys.forEach((element) => {
-          let value = values[element];
-          if(element.indexOf('variant') > -1 && element != 'varianPrice_0'){
-            let index = element.split('_',2);
-
-            if(!variants[index[1]]){
-              variants[index[1]] = {};
+            const curVariant = variantsValues[element];
+            if(curVariant.variantPrice && curVariant.variantPrice.amount){
+              const variantPrice = curVariant.variantPrice.amount;
+              const variantLabel = curVariant.variantLabel;
+              variantsUpdate[element] = {variantPrice,variantLabel};
             }
-
-            if(value.amount){
-              variants[index[1]][index[0]] = value.amount;
-            }else{
-              variants[index[1]][index[0]] = value;
-            }
-          }
         });
-
+        
         // Update stock only if the value has changed.
         // NOTE: this is going to be used on a separate call to API
         // in EditListingPage.duck.js: sdk.stock.compareAndSet();
@@ -98,10 +105,12 @@ const EditListingPricingPanel = props => {
             }
           : {};
 
+        const stockUnlimited = unlimitedStock?true:false;
+
         const updateValues = {
           price,
           ...stockUpdateMaybe,
-          publicData: { variants },
+          publicData: { variants:variantsUpdate, stockUnlimited },
         };
         onSubmit(updateValues);
       }}

@@ -16,7 +16,7 @@ import { formatMoney } from '../../../../util/currency';
 import { types as sdkTypes } from '../../../../util/sdkLoader';
 
 // Import shared components
-import { Button, Form, FieldCurrencyInput, FieldTextInput } from '../../../../components';
+import { Button, Form, FieldCurrencyInput, FieldTextInput, FieldCheckbox } from '../../../../components';
 
 // Import modules from this directory
 import css from './EditListingPricingForm.module.css';
@@ -45,8 +45,10 @@ export const EditListingPricingFormComponent = props => (
         updateInProgress,
         fetchErrors,
         variantLabel,
+        values,
       } = formRenderProps;
 
+      const variants = {};
       const priceRequired = validators.required(
         intl.formatMessage({
           id: 'EditListingPricingForm.priceRequired',
@@ -73,6 +75,11 @@ export const EditListingPricingFormComponent = props => (
         0
       );
 
+      const unlimitedEnabled = values.unlimitedStock?.includes("unlimited");
+      if(unlimitedEnabled){
+        values.stock = 999999;
+      }
+      const stockClasses = classNames(unlimitedEnabled ? css.disabled : null);
       const classes = classNames(css.root, className);
       const submitReady = (updated && pristine) || ready;
       const variantAdd = variantLabel;
@@ -111,24 +118,36 @@ export const EditListingPricingFormComponent = props => (
             validate={priceValidators}
           />
 
-          <FieldTextInput
-            className={css.input}
-            id="stock"
-            name="stock"
-            label={intl.formatMessage({ id: 'EditListingPricingForm.stockLabel' })}
-            placeholder={intl.formatMessage({ id: 'EditListingPricingForm.stockPlaceholder' })}
-            type="number"
-            min={0}
-            validate={stockValidator}
+          <FieldCheckbox 
+          className={css.unlimitedCheckbox}
+          id="unlimitedStock"
+          name="unlimitedStock"
+          label={intl.formatMessage({ id: 'EditListingPricingForm.unlimitedStockLabel' })}
+          value="unlimited"
+          type="checkbox"
           />
-          {setStockError ? <p className={css.error}>{stockErrorMessage}</p> : null}
 
+          <div className={stockClasses}>
+            <FieldTextInput
+              className={css.input}
+              id="stock"
+              name="stock"
+              label={intl.formatMessage({ id: 'EditListingPricingForm.stockLabel' })}
+              placeholder={intl.formatMessage({ id: 'EditListingPricingForm.stockPlaceholder' })}
+              type="number"
+              min={0}
+              validate={stockValidator}
+            />
+            {setStockError ? <p className={css.error}>{stockErrorMessage}</p> : null}
+          </div>
+            
           <EditListingPricingVariant
-            afdsda="button"
+            variants={variants}
             intl={intl}
             priceValidators={priceValidators}
           > 
           </EditListingPricingVariant>
+          <pre>{JSON.stringify(EditListingPricingVariant, null, 2)}</pre>
 
 
           <Button
