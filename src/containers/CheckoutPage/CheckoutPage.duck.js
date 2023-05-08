@@ -163,6 +163,11 @@ export const stripeCustomerError = e => ({
 export const initiateOrder = (orderParams, transactionId) => (dispatch, getState, sdk) => {
   dispatch(initiateOrderRequest());
 
+  console.log('initiateOrder');
+
+  console.log('orderParams');
+  console.log(orderParams);
+
   // If we already have a transaction ID, we should transition, not
   // initiate.
   const isTransition = !!transactionId;
@@ -171,8 +176,9 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
     : TRANSITION_REQUEST_PAYMENT;
   const isPrivilegedTransition = isPrivileged(transition);
 
-  const { deliveryMethod, quantity, bookingDates, ...otherOrderParams } = orderParams;
+  const { deliveryMethod, quantity, variant, bookingDates, ...otherOrderParams } = orderParams;
   const quantityMaybe = quantity ? { stockReservationQuantity: quantity } : {};
+  const variantMaybe = quantity ? { stockReservationVariant: variant } : {};
   const bookingParamsMaybe = bookingDates || {};
 
   // Parameters only for client app's server
@@ -183,6 +189,7 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
   // Parameters for Flex API
   const transitionParams = {
     ...quantityMaybe,
+    ...variantMaybe,
     ...bookingParamsMaybe,
     ...otherOrderParams,
   };
@@ -218,6 +225,7 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
       ...transactionIdMaybe,
       listingId: orderParams.listingId.uuid,
       ...quantityMaybe,
+      ...variantMaybe,
       ...bookingParamsMaybe,
       ...orderData,
     });
@@ -226,22 +234,32 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
 
   if (isTransition && isPrivilegedTransition) {
     // transition privileged
+    console.log('initiateOrder transition privileged');
+    console.log(orderData);
     return transitionPrivileged({ isSpeculative: false, orderData, bodyParams, queryParams })
       .then(handleSucces)
       .catch(handleError);
   } else if (isTransition) {
     // transition non-privileged
+    console.log('initiateOrder transition non-privileged');
+    console.log(orderData);
     return sdk.transactions
       .transition(bodyParams, queryParams)
       .then(handleSucces)
       .catch(handleError);
   } else if (isPrivilegedTransition) {
     // initiate privileged
+    console.log('initiateOrder initiate privileged');
+    console.log(orderData);
+    console.log(bodyParams);
+    console.log(queryParams);
     return initiatePrivileged({ isSpeculative: false, orderData, bodyParams, queryParams })
       .then(handleSucces)
       .catch(handleError);
   } else {
     // initiate non-privileged
+    console.log('initiateOrder initiate non-privileged');
+    console.log(orderData);
     return sdk.transactions
       .initiate(bodyParams, queryParams)
       .then(handleSucces)
@@ -387,17 +405,24 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
 
   if (isTransition && isPrivilegedTransition) {
     // transition privileged
+    console.log('transition privileged');
+    console.log('bodyParams');
+    console.log(bodyParams);
     return transitionPrivileged({ isSpeculative: true, orderData, bodyParams, queryParams })
       .then(handleSuccess)
       .catch(handleError);
   } else if (isTransition) {
     // transition non-privileged
+    console.log('transition non-privileged');
+    console.log('bodyParams');
+    console.log(bodyParams);
     return sdk.transactions
       .transitionSpeculative(bodyParams, queryParams)
       .then(handleSuccess)
       .catch(handleError);
   } else if (isPrivilegedTransition) {
     // initiate privileged
+    console.log('initiate privileged');
     console.log('orderData');
     console.log(orderData);
     console.log('bodyParams');
@@ -409,6 +434,9 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
       .catch(handleError);
   } else {
     // initiate non-privileged
+    console.log('initiate non-privileged');
+    console.log('bodyParams');
+    console.log(bodyParams);
     return sdk.transactions
       .initiateSpeculative(bodyParams, queryParams)
       .then(handleSuccess)
@@ -423,6 +451,9 @@ export const stripeCustomer = () => (dispatch, getState, sdk) => {
 
   return dispatch(fetchCurrentUser({ include: ['stripeCustomer.defaultPaymentMethod'] }))
     .then(response => {
+      console.log('stripeCustomer');
+      console.log('response');
+      console.log(response);
       dispatch(stripeCustomerSuccess());
     })
     .catch(e => {

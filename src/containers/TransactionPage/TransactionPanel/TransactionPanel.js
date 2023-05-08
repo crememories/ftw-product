@@ -290,6 +290,13 @@ export class TransactionPanelComponent extends Component {
       ? `${formatMoney(intl, price)} ${intl.formatMessage({ id: unitTranslationKey })}`
       : '';
 
+
+      console.log(currentListing.attributes);
+      console.log('transaction');
+      console.log(transaction);
+
+    const variantTitle = 'dasd';
+
     const firstImage =
       currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
 
@@ -425,6 +432,7 @@ export class TransactionPanelComponent extends Component {
                   showDetailCardHeadings={stateData.showDetailCardHeadings}
                   listingTitle={listingTitle}
                   subTitle={bookingSubTitle}
+                  variantTitle={variantTitle}
                 />
                 {stateData.showOrderPanel ? (
                   <OrderPanel

@@ -79,9 +79,7 @@ exports.transactionLineItems = (listing, orderData) => {
 
 
   // custom variants prices
-  console.log('listing');
-
-  if( orderData.variantId){
+  if( orderData.variantId ){
     const variantId = orderData.variantId-1;
     const variantData = listing.attributes.publicData.variants[variantId];
     const variantPrice = variantData.variantPrice;
@@ -103,6 +101,7 @@ exports.transactionLineItems = (listing, orderData) => {
     unitPrice,
     quantity: orderQuantity,
     includeFor: ['customer', 'provider'],
+    variantLabel: "Test text",
   };
 
   // Calculate shipping fee if applicable

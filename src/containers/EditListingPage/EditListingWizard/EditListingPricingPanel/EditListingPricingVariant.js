@@ -15,22 +15,13 @@ const EditListingPricingVariant = props => {
 
     const removeInput = (fieldArrayProps,index) => {
       // fieldArrayProps.fields.remove(index);
-      
-      // This is the proper way to change state that depends on previous state.
-      fieldArrayProps.fields.map((prevTextBox) => {
-
-        const mutatableTextBox = [...prevTextBox];
-        mutatableTextBox.splice(mutatableTextBox.length-1, 1);
-
-        fieldArrayProps.fields.remove(index)
-        return mutatableTextBox;
-      })
+      fieldArrayProps.fields.remove(index);
     }
    
     return <FieldArray name="pricingVariant">
             {fieldArrayProps => 
               fieldArrayProps.fields.map((name, index) => (
-                <div key={name}>
+                <div key={name} >
                   <hr/>
                   <h2>Pricing Variant {index+1}
                   <button
@@ -43,17 +34,22 @@ const EditListingPricingVariant = props => {
                   </h2>
                   
                   <FieldCurrencyInput 
-                  id={"variantPrice_"+index}
-                  name={"variantPrice_"+index}
+                  id={`${name}.variantPrice`}
+                  name={`${name}.variantPrice`}
                   className={css.input} 
                   label={props.intl.formatMessage({ id: 'EditListingPricingForm.pricePerProductVariant' })}
                   placeholder={props.intl.formatMessage({ id: 'EditListingPricingForm.pricePerProductPlaceholderVariant' })}
                   currencyConfig={config.currencyConfig}
                   validate={props.priceValidators}
+                  onChange={()=>{
+                      let qweqwe = `${name}`;
+                      console.log(JSON.stringify(qweqwe))
+                    }
+                  }
                   />
                   <FieldTextInput 
-                  id={"variantLabel_"+index}
-                  name={"variantLabel_"+index}
+                  id={`${name}.variantLabel`}
+                  name={`${name}.variantLabel`}
                   className={css.input} 
                   label={props.intl.formatMessage({ id: 'EditListingPricingForm.labelProductVariant' })}
                   placeholder={props.intl.formatMessage({ id: 'EditListingPricingForm.labelProductPlaceholderVariant' })}
