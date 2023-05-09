@@ -77,7 +77,7 @@ export const EditListingPricingFormComponent = props => (
 
       const unlimitedEnabled = values.unlimitedStock?.includes("unlimited");
       if(unlimitedEnabled){
-        values.stock = 999999;
+        values.stock = 9999;
       }
       const stockClasses = classNames(unlimitedEnabled ? css.disabled : null);
       const classes = classNames(css.root, className);
@@ -149,7 +149,7 @@ export const EditListingPricingFormComponent = props => (
           </EditListingPricingVariant>
           <pre>{JSON.stringify(EditListingPricingVariant, null, 2)}</pre>
 
-
+          <div className={css.actionButtons}>
           <Button
             className={css.submitButton}
             type="button"
@@ -167,6 +167,8 @@ export const EditListingPricingFormComponent = props => (
           >
             {saveActionMsg}
           </Button>
+          </div>
+
         </Form>
       );
     }}

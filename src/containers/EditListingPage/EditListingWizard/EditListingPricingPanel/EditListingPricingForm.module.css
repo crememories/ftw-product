@@ -35,8 +35,13 @@
   @media (--viewportLarge) {
     display: inline-block;
     width: 241px;
-    margin-top: 100px;
+    /* margin-top: 100px; */
   }
+}
+
+.actionButtons{
+  display: flex;
+  justify-content: space-between;
 }
 
 .removeButton{
