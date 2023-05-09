@@ -163,6 +163,17 @@ const Footer = props => {
                   <NamedLink
                     name="SearchPage"
                     to={{
+                      search: '?pub_category=Art',
+                    }}
+                    className={css.link}
+                  >
+                    <FormattedMessage id="Footer.link5" />
+                  </NamedLink>
+                </li>
+                <li className={css.listItem}>
+                  <NamedLink
+                    name="SearchPage"
+                    to={{
                       search: '?pub_category=other',
                     }}
                     className={css.link}

@@ -53,6 +53,7 @@ export const filters = [
         { key: 'plane', label: 'Planes' },
         { key: 'boat', label: 'Boats' },
         { key: 'urn', label: 'Urns' },
+        { key: 'art', label: 'Art' },
         { key: 'other', label: 'Other' },
       ],
     },
