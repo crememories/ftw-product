@@ -46,15 +46,17 @@ const EditListingPricingPanel = props => {
   const initialUnlimitedStock = currentListing.attributes.publicData.stockUnlimited?[`unlimited`]:null;
   const pricingVariant = [];
 
-  const variantKeys = Object.keys(variants);
+  const variantKeys = variants ? Object.keys(variants) : null;
 
-  variantKeys.forEach( key => {
-    const variantLabel = variants[key].variantLabel;
-    const variantPrice = new Money;
-    variantPrice.amount = variants[key].variantPrice;
-    variantPrice.currency = price.currency;
-    pricingVariant[pricingVariant.length] = {variantPrice,variantLabel}
-  });
+  if(variantKeys){
+    variantKeys.forEach( key => {
+      const variantLabel = variants[key].variantLabel;
+      const variantPrice = new Money;
+      variantPrice.amount = variants[key].variantPrice;
+      variantPrice.currency = price.currency;
+      pricingVariant[pricingVariant.length] = {variantPrice,variantLabel}
+    });
+  }
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
